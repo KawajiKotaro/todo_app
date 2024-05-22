@@ -1,19 +1,22 @@
-import React from 'react'
+import './Todo.css';
 
-const Todo = ({ todo, toggleTodo }) => {
+import React from 'react';
+
+const Todo = ({ todo, toggleTodo, deleteTask }) => {
   const handleTodoClick = () => {
     toggleTodo(todo.id);
-  }
-
+  };
 
   return (
     <div>
-      <label>
-        <input type="checkbox" checked={todo.completed} readOnly onChange={handleTodoClick}/>
-        {todo.name}
-      </label>  
+      <label className="task">
+        <input type="checkbox" className="filled-in" checked={todo.completed} readOnly onChange={handleTodoClick} />
+        <span className="taskName">{todo.name}</span>
+        <button className=" btn-small red  delete-button" onClick={() => deleteTask(todo.id)}>×</button>
+      </label>
+     
     </div>
-  )
-}
+  );
+};
 
-export default Todo
+export default Todo;

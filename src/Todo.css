@@ -1,0 +1,22 @@
+.task {
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  border-bottom: 1px solid #ccc;
+  font-size: 15px;
+  user-select: text;
+  
+}
+
+.delete-button {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 15px;
+    margin-left: auto;
+    width: 30px;
+    height: 25px; 
+    font-size: 20px;
+    background-color: rgb(255, 127, 127);
+
+}

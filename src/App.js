@@ -2,6 +2,7 @@ import './App.css';
 import { useState, useRef, useEffect } from 'react'
 
 import Calender from './Calendar'
+import AddTask from './AddTask'
 import TodoList from './TodoList'
 
 function App() {
@@ -23,26 +24,40 @@ function App() {
 
   }, [selectedDate]);
   
-   const fetchTaskData = () => {
+  //  const fetchTaskData = () => {
 
-    fetch('http://localhost:8080/tasks')
+  //   fetch('http://localhost:8080/tasks')
+  //     .then(response => response.json())
+  //     .then(tasks => {
+  //       // selectedDateと同じ日付を持つタスクのみをフィルタリングする
+  //       const filteredTasks = tasks.filter(task => {
+  //         // tasks内の各タスクの日付を取得し、selectedDateと比較する
+  //         const taskDate = new Date(task.date); // taskの日付をDateオブジェクトに変換する
+  //         const selectedDateObj = new Date(selectedDate); // selectedDateをDateオブジェクトに変換する
+  //         return taskDate.toDateString() === selectedDateObj.toDateString(); // 日付が一致する場合のみtrueを返す
+  //       });
+  //       setTodos(filteredTasks); // オリジナルのtasksではなく、フィルタリングされたtasksをセットする
+  //     })
+  //     .catch(error => {
+  //       console.error('Error fetching tasks data:', error);
+  //       setTodos([]);
+  //     });
+  // }
+
+  const fetchTaskData = () => {
+    fetch(`http://localhost:8080/tasks/find?dateStr=${selectedDate}`)
       .then(response => response.json())
       .then(tasks => {
-        // selectedDateと同じ日付を持つタスクのみをフィルタリングする
-        const filteredTasks = tasks.filter(task => {
-          // tasks内の各タスクの日付を取得し、selectedDateと比較する
-          const taskDate = new Date(task.date); // taskの日付をDateオブジェクトに変換する
-          const selectedDateObj = new Date(selectedDate); // selectedDateをDateオブジェクトに変換する
-          return taskDate.toDateString() === selectedDateObj.toDateString(); // 日付が一致する場合のみtrueを返す
-        });
-        setTodos(filteredTasks); // オリジナルのtasksではなく、フィルタリングされたtasksをセットする
+        console.log(tasks);
+        setTodos(tasks);
       })
       .catch(error => {
         console.error('Error fetching tasks data:', error);
         setTodos([]);
       });
-  }
-  
+  };
+
+
   const addTaskToDatabase = (task) => {
     fetch('http://localhost:8080/tasks/add', {
       method: 'POST',
@@ -80,6 +95,26 @@ function App() {
       console.error('Error updating stock:', error);
     });
   };
+
+  const deleteTask = (id) => {
+    fetch('http://localhost:8080/tasks/delete', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ id })
+    })
+    .then(response => {
+      if (response.ok) {
+        fetchTaskData();
+      }else {
+        console.error('Failed to delete Stock');
+      }
+    })
+    .catch(error => {
+      console.error('Error deleting stock:', error);
+    });
+  };
   
   // タスクの完了チェック関数
   // 引数 id ... どのタスクにチェックを入れるか
@@ -103,20 +138,31 @@ function App() {
   }
 
   return (
-    <main>
-      <Calender today={today} selectedDate={selectedDate} setSelectedDate={setSelectedDate} />
-      <div>
-        <form onSubmit={handleSubmit}>
-          <label>
-            <input type="text" name="name" required ref={todoNameRef} />
-            <button type="submit">タスクを追加</button>
-          </label>
-        </form>
-
-        <p>タスクリスト</p>
-        <TodoList todos = {todos} toggleTodo={toggleTodo} />
-      </div>
-    </main>
+    <div>
+      <nav className="z-depth-0  grey darken-3">
+          <div className="nav-wrapper">
+            <div className="main-logo"><a href="" className="brand-logo ">TodoList</a></div>
+            <ul id="nav-mobile" className="right hide-on-med-and-down">
+            </ul>
+          </div>
+      </nav>
+      <main>
+        
+        <div className="app ">
+          
+          <div className="calendar-container">
+            <Calender today={today} selectedDate={selectedDate} setSelectedDate={setSelectedDate} />
+          </div>
+          <div className="tasks-container">
+            <AddTask handleSubmit={handleSubmit} todoNameRef={todoNameRef}/>
+            <p className="List_title">TodoList</p>
+            <div id="task-list">
+            <TodoList todos={todos} toggleTodo={toggleTodo} deleteTask={deleteTask} />
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
   );
 }
 

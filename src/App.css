@@ -1,3 +1,68 @@
-main {
+
+body, html {
+    height: 100%;
+    margin: 0;
+    justify-content: center;
+    font-family: "M PLUS Rounded 1c", sans-serif;
+    color: white;
+    background-color: rgb(62, 62, 62);
+    user-select: none;
+  }
+  
+  .app {
     display: flex;
-}
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+    font-size: 20px;
+    background-color: rgb(62, 62, 62);
+  }
+  
+  .calendar-container {
+    flex: 1;
+    padding: 20px;
+  }
+  
+  .tasks-container {
+    flex: 2;
+    padding: 20px;
+  }
+  
+  
+  #task-list {
+	height: 270px;
+	overflow-y: scroll;
+  }
+
+  #task-list::-webkit-scrollbar {
+    background: rgb(155, 155, 155);
+    width: 15px;
+    height: 15px;
+    border-radius: 20px;
+  }
+
+  #task-list::-webkit-scrollbar-thumb {
+    background-color: #c6c5c5;
+    border-radius: 20px;
+  }
+
+  .main-logo {
+    margin-left : 30px;
+    font-weight: bold;
+  }
+
+  .List_title {
+    margin-left : 40px;
+    font-weight: bold;
+    user-select: none;
+  }
+
+  nav {
+    border-bottom: 1px ridge rgb(211, 211, 211);
+  }
+
