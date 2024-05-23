@@ -4,11 +4,11 @@ import './TodoList.css'
 
 const TodoList = ({ todos, toggleTodo, deleteTask}) => {
   return (
-    <div id="topLink">
+    <div id="listTop">
       {todos.map((todo) => (
         <Todo  todo={todo} key={todo.id} toggleTodo={toggleTodo} deleteTask={deleteTask} />
       ))}
-      <p id="top"><a href="#topLink">⇧ Top</a></p>
+      <p id="top"><a href="#listTop">⇧ Top</a></p>
     </div>
   );
 }
