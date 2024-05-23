@@ -12,9 +12,8 @@ const Todo = ({ todo, toggleTodo, deleteTask }) => {
       <label className="task">
         <input type="checkbox" className="filled-in" checked={todo.completed} readOnly onChange={handleTodoClick} />
         <span className="taskName">{todo.name}</span>
-        <button className=" btn-small red  delete-button" onClick={() => deleteTask(todo.id)}>×</button>
+        <button className=" btn-small  red lighten-1 delete-button" onClick={() => deleteTask(todo.id)}>×</button>
       </label>
-     
     </div>
   );
 };

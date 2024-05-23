@@ -44,6 +44,7 @@ function App() {
   //     });
   // }
 
+  // 日付を渡してタスクデータ取得
   const fetchTaskData = () => {
     fetch(`http://localhost:8080/tasks/find?dateStr=${selectedDate}`)
       .then(response => response.json())
@@ -146,10 +147,9 @@ function App() {
             </ul>
           </div>
       </nav>
-      <main>
-        
+
+      <main>  
         <div className="app ">
-          
           <div className="calendar-container">
             <Calender today={today} selectedDate={selectedDate} setSelectedDate={setSelectedDate} />
           </div>

@@ -17,6 +17,11 @@
   margin-bottom: 16px;
 }
 
+.calendar-header button {
+  background-color: #4f4f4f;
+}
+
+
 .month-btn {
   color: #ccc;
   background-color: #4f4f4f;
@@ -43,6 +48,10 @@
   text-align: center;
   border: 1px solid #ccc;
   margin: -1px;
+}
+
+.calendar-date {
+  min-width: 70px;
 }
 
 .calendar-date.active {

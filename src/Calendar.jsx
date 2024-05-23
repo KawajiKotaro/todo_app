@@ -48,9 +48,9 @@ const Calendar = ({ today, selectedDate, setSelectedDate }) => {
   return (
     <div className="calendar">
       <div className="calendar-header">
-        <button className="month-btn" onClick={() => handleMonthChange(-1)}>&lt;</button>
-        {currentYear}/{currentMonth + 1}
-        <button className="month-btn" onClick={() => handleMonthChange(1)}>&gt;</button>
+        <button className="btn btn-primary" onClick={() => handleMonthChange(-1)}>&lt;</button>
+        {currentYear}/{(currentMonth + 1 < 10) ? `0${currentMonth + 1}` : currentMonth + 1}
+        <button className="btn btn-primary" onClick={() => handleMonthChange(1)}>&gt;</button>
       </div>
       <div className="calendar-grid">
         {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map((day) => (

@@ -1,0 +1,16 @@
+#top a{
+    background:#00bfa5;
+    color:#fff;
+    text-align: center;
+    display: block;
+    text-decoration: none;
+    padding:10px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: 0.8rem;
+    transition: all 0.3s;
+  }
+  
+  #top a:hover{
+    background: #00d2b6;
+  }
